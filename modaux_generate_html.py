@@ -26,7 +26,7 @@ from bs4 import Comment
 
 for subdir, dirs, files in os.walk(os.getcwd()):
     for file in files:
-        if file == 'temp.html':
+        if file == 'temp.txt':
             full_filepath = os.path.join(subdir, file)
             path = subdir
 
@@ -42,6 +42,7 @@ for subdir, dirs, files in os.walk(os.getcwd()):
                     filename = path + '/' + str(comments[num].lower().strip().replace(" ", "-")) + '.html'
                     file_contents = '---' + '\n'
                     file_contents += 'title: ' + comments[num].strip() + '\n'
+                    file_contents += 'weight: ' + str(num + 1) + '\n'
                     file_contents += '---' + '\n'
                     file_contents += str(children[num].prettify().strip())
 
@@ -51,7 +52,7 @@ for subdir, dirs, files in os.walk(os.getcwd()):
 
                     index_file_contents = '---' + '\n'
                     index_file_contents += 'title: ' + current_dir.capitalize() + '\n'
-                    index_file_contents += 'modaux' + '\n'
+                    index_file_contents += 'modaux:' + '\n'
                     index_file_contents += '  merge: true' + '\n'
                     index_file_contents += '---'
 
